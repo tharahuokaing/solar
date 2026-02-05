@@ -99,27 +99,26 @@ map.addEventListener('mousemove', (e) => {
     map.style.transform = `rotateX(${40 + yAxis}deg) rotateZ(${-10 + xAxis}deg)`;
 });
 
-// 5. Action Functions
+// 5. មុខងារបញ្ជា (Action Functions)
 function fireSolar() {
-    aiSpeak("Solar defense active. Initiating pulse.");
+    aiSpeak("ការការពារព្រះអាទិត្យកំពុងដំណើរការ។ កំពុងចាប់ផ្តើមបាញ់។");
     map.classList.add('flicker');
     addLog("SOLAR_PULSE_FIRED", "var(--gold)");
     setTimeout(() => map.classList.remove('flicker'), 2000);
 }
 
 function spawnEV() {
-    aiSpeak("Priority clear. Emergency unit deployed.");
+    aiSpeak("អាទិភាពត្រូវបានសម្អាត។ ឯកភាពបន្ទាន់ត្រូវបានបញ្ជូន។");
     createVehicle(true);
     addLog("V2X_PRIORITY_SIGNAL", "#fff");
 }
 
-function addLog(msg, color) {
-    const entry = document.createElement('div');
-    entry.style.color = color;
-    entry.style.fontSize = '0.7rem';
-    entry.innerText = `> [${new Date().toLocaleTimeString()}] ${msg}`;
-    logFeed.prepend(entry);
-}
+// Boot System
+window.onload = () => {
+    for (let i = 0; i < 15; i++) createVehicle();
+    animate();
+    aiSpeak("ប្រព័ន្ធហូឡូក្រាមអន្តរកម្មបានចាប់ផ្តើម។");
+};
 
 // Boot System
 window.onload = () => {
