@@ -10,7 +10,7 @@ const logFeed = document.getElementById('log-feed');
 // 1. AI Voice System
 function aiSpeak(msg) {
     const speech = new SpeechSynthesisUtterance(msg);
-    speech.lang = 'en-US';
+speech.lang = 'km-KH';
     speech.rate = 1.0;
     speech.pitch = 0.6;
     window.speechSynthesis.speak(speech);
