@@ -55,53 +55,25 @@ function createVehicle(isEmergency = false) {
     vehicles.push(data);
 }
 
-// 4. Main Animation Loop (ចង្វាក់ដំណើរការប្រព័ន្ធ)
-function animate() {
-    // បច្ចុប្បន្នភាពម៉ោង Unix
-    document.getElementById('unix-clock').innerText = Math.floor(Date.now() / 1000);
-
-    // បញ្ជាចលនារថយន្ត
-    vehicles.forEach((v, index) => {
-        v.x += v.speed;
-        
-        // បើឡានរត់ផុតផែនទី
-        if (v.x > map.offsetWidth) {
-            if (v.isEV) {
-                v.el.remove();
-                vehicles.splice(index, 1);
-            } else {
-                v.x = -20;
-            }
-        }
-
-        v.el.style.left = v.x + 'px';
-        v.el.style.top = v.y + 'px';
-        // បង្កើត Effect អណ្តែត (Floating)
-        v.el.style.transform = `translateZ(${Math.sin(Date.now() / 500) * 5}px)`;
-    });
-
-    requestAnimationFrame(animate);
-}
-
-// 5. Defense Commands (បញ្ជាការពារ)
+// 5. បញ្ជាការពារ (Defense Commands)
 function fireSolar() {
-    aiSpeak("Solar core active. Target locked.");
+    aiSpeak("ស្នូលព្រះអាទិត្យកំពុងដំណើរការ។ គោលដៅត្រូវបានចាក់សោ។");
     map.classList.add('flicker');
     addLog("SOLAR_BLAST_EXECUTED", "var(--gold)");
     
     setTimeout(() => {
         map.classList.remove('flicker');
-        aiSpeak("Threat neutralized.");
+        aiSpeak("គ្រោះថ្នាក់ត្រូវបានបំបាត់។");
     }, 2000);
 }
 
 function spawnEV() {
-    aiSpeak("Emergency priority override. Clearing lanes.");
+    aiSpeak("អាទិភាពបន្ទាន់ត្រូវបានបើក។ កំពុងសម្អាតផ្លូវ។");
     createVehicle(true);
     addLog("V2X_EMERGENCY_DEPLOYED", "#fff");
 }
 
-// 6. Threat Monitoring (តាមដានការលួចចូល)
+// 6. តាមដានការលួចចូល (Threat Monitoring)
 function simulateThreat() {
     const ip = `${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.1.${Math.floor(Math.random()*255)}`;
     document.getElementById('attacker-ip').innerText = ip;
@@ -112,19 +84,11 @@ function simulateThreat() {
     node.style.top = (20 + Math.random() * 60) + '%';
     map.appendChild(node);
 
-    aiSpeak("Warning. External intrusion from " + ip);
+    aiSpeak("ព្រមាន។ មានការលួចចូលពី " + ip);
     addLog(`ATTACK_DETECTED: ${ip}`, "var(--red)");
 
     setTimeout(() => {
         node.remove();
-        aiSpeak("Security breach mitigated.");
+        aiSpeak("ការលួចចូលត្រូវបានបំបាត់។");
     }, 4000);
 }
-
-// 7. Helper: Add Logs
-function addLog(msg, color) {
-    const entry = document.createElement('div');
-    entry.style.color = color || 'inherit';
-    entry.style.fontSize = '0.7rem';
-    entry.style.borderLeft = `2px solid ${color}`;
-    entry.style.paddingLeft = '5px';
