@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENTINEL OS | Cyber Defense Interface</title>
-    
+    <title>CYBER SENTINEL | OS v7.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="os-terminal">
+<body class="terminal-theme">
 
-    <header class="panel header-bar">
+    <header class="panel header-main">
         <div class="os-brand">
             <span class="glitch-text" data-text="SENTINEL OS v7.0">SENTINEL OS v7.0</span>
         </div>
         
-        <div class="header-metrics">
-            <div class="metric-item">
-                <span class="label">UNIX_CLOCK:</span>
+        <div class="header-data-cluster">
+            <div class="time-module">
+                <span class="label">UNIX_EPOCH:</span>
                 <span id="unix-clock" class="val-mono">0000000000</span>
             </div>
-            <div class="metric-item">
-                <span class="label">SYS_STATUS:</span>
-                <span id="sys-status" class="status-indicator secure">SECURE</span>
+            <div class="security-status">
+                <span class="label">SEC_STATUS:</span> 
+                <span id="sys-status" class="status-active">SECURE</span>
             </div>
         </div>
     </header>
@@ -30,33 +29,33 @@
     <div class="dashboard-grid">
         
         <aside class="panel sidebar-left">
-            <section class="stat-group">
-                <div class="stat-card">
-                    <small>NETWORK_TRAFFIC</small>
+            <div class="stat-group">
+                <div class="stat-box">
+                    <span class="stat-label">NETWORK_TRAFFIC</span>
                     <div class="val">4.2 <span class="unit">GB/s</span></div>
                 </div>
-                <div class="stat-card">
-                    <small>V2X_NODES_SYNC</small>
+                <div class="stat-box">
+                    <span class="stat-label">V2X_NODES_SYNC</span>
                     <div id="node-count" class="val">10</div>
                 </div>
-                <div class="stat-card">
-                    <small>SOLAR_GRID_LOAD</small>
+                <div class="stat-box">
+                    <span class="stat-label">SOLAR_GRID_LOAD</span>
                     <div class="val">14%</div>
                 </div>
-            </section>
+            </div>
             
-            <section class="panel cctv-module">
+            <section class="module-container surveillance">
                 <div class="panel-header">SURVEILLANCE_GRID</div>
-                <div class="camera-container">
-                    <div class="cam-label">CAM_03: SUN_MONITOR_SDO</div>
+                <div class="cam-wrapper">
+                    <div class="cam-label">CAM_03: HELIOS_MONITOR</div>
                     <div class="cam-feed">
                         <img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0171.jpg" 
                              alt="Live Sun Monitor" class="live-feed">
                         
-                        <div class="ai-overlay">
-                            <p class="alert-blink">[!] 32-BIT OVERFLOW SIMULATION</p>
-                            <p>T-ZERO: 19 JAN 2038</p>
-                            <p>STATUS: MONITORING</p>
+                        <div class="overlay-data">
+                            <p class="warning-text">[!] SIMULATING 32-BIT OVERFLOW</p>
+                            <p>EPOCH_MAX: 19 JAN 2038</p>
+                            <p>OVERFLOW_EST: 03:14:07 GMT</p>
                         </div>
                     </div>
                 </div>
@@ -72,42 +71,39 @@
             </div>
         </aside>
 
-        <main class="panel main-display">
-            <div class="hologram-map" id="map">
+        <main class="panel main-stage">
+            <div class="hologram-viewport" id="map">
                 <div class="scanline"></div>
-                <div class="ui-interlace"></div>
+                <div class="grid-overlay"></div>
                 </div>
         </main>
 
         <aside class="panel sidebar-right">
-            <div class="panel-header">CTI_FEED (THREAT_INTEL)</div>
-            <div id="log-feed" class="log-container">
-                <div class="log-entry">[INFO] System Handshake Complete...</div>
-                <div class="log-entry">[WARN] Anomalous Packet detected at Node 07...</div>
+            <div class="panel-header">CTI_THREAT_FEED</div>
+            <div id="log-feed" class="log-stream">
+                <div class="log-entry">[SYS] Handshake initialized...</div>
+                <div class="log-entry">[NET] Satellite link established...</div>
             </div>
             
-            <div class="intrusion-monitor">
+            <div class="threat-monitor">
                 <div class="monitor-label">LAST_KNOWN_ATTACKER_IP</div>
-                <div id="attacker-ip" class="val alert-text">0.0.0.0</div>
+                <div id="attacker-ip" class="val-alert">0.0.0.0</div>
             </div>
         </aside>
     </div>
 
     <footer class="panel footer-bar">
-        <div class="core-diagnostics">
-            <span class="label">[ CORE_SYSTEM_DIAGNOSTICS ]</span>
+        <div class="diagnostics-module">
+            <span class="diag-header">[ CORE_SYSTEM_DIAGNOSTICS ]</span>
             <span id="core-log" class="typing-text">Initializing AI Sentinel Core... Linking to Satellite Constellation...</span>
         </div>
-        <div class="meta-data">
-            <div class="node-info">LOCATION: <span class="val-mono">EARTH_PRIME</span></div>
+        
+        <div class="geo-data">
+            <div class="node-id">NODE: <span class="val-mono">EARTH_PRIME</span></div>
             <div class="coords">GPS: <span class="val-mono">00.0000° N, 000.0000° E</span></div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="script1.js"></script>
-    <script src="script2.js"></script>
-    <script src="script3.js"></script>
-        
+    <script src="core-logic.js"></script>
 </body>
 </html>
