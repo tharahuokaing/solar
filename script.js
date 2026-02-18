@@ -1,63 +1,57 @@
 /**
- * CYBER SENTINEL OS v7.0 - Core Script
- * គ្រប់គ្រងលើ: ចលនា V2X, ប្រព័ន្ធសំឡេង AI, និងការតាមដានការវាយប្រហារ
+ * ក្រឡាបញ្ជាមហិទ្ធិឫទ្ធិ SENTINEL OS v7.0
+ * គ្រប់គ្រងលើ: យានយន្តអាទិភាព, ព្រះសូរសៀងបញ្ញាសិប្បនិម្មិត, និងការទប់ស្កាត់មហន្តរាយ
  */
 
 const map = document.getElementById('map');
 const logFeed = document.getElementById('log-feed');
+const solarLoadDisplay = document.getElementById('solar-load-val');
 const vehicles = [];
 
-// 1. ប្រព័ន្ធសំឡេង AI (AI Voice Synthesis)
+// ១. ព្រះសូរសៀងបញ្ញាសិប្បនិម្មិត (High-Command AI Voice)
 function aiSpeak(msg) {
     const speech = new SpeechSynthesisUtterance(msg);
-    speech.lang = 'km-KH'; // កំណត់ភាសាខ្មែរ
-    speech.rate = 1.0;     // ល្បឿនធម្មតាដើម្បីឱ្យស្ដាប់ច្បាស់
-    speech.pitch = 0.8;    // សំឡេងធ្ងន់បន្តិចបែប Robot
+    speech.lang = 'km-KH'; 
+    speech.rate = 0.9;     // បន្ថយល្បឿនដើម្បីភាពថ្លៃថ្នូរ
+    speech.pitch = 0.7;    // សំឡេងធ្ងន់អង់អាច
     window.speechSynthesis.speak(speech);
 }
 
-// 2. ការបង្កើតរថយន្តស្វ័យប្រវត្តិ (V2X Vehicle Engine)
-function createVehicle(isEV) {
+// ២. ការចាត់តាំងយានយន្តអាទិភាព (Imperial V2X Engine)
+function createVehicle(isPriority = false) {
     const v = document.createElement('div');
-    v.className = isEV ? 'vehicle flicker' : 'vehicle';
-    
-    // បើជារថយន្តសង្គ្រោះបន្ទាន់ (EV) ឱ្យវាមានពណ៌ស និងពន្លឺអាទិភាព
-    if(isEV) {
-        v.style.background = '#ffffff';
-        v.style.boxShadow = '0 0 20px #ffffff, 0 0 10px #ff0000';
-    }
+    v.className = isPriority ? 'vehicle flicker priority' : 'vehicle';
     
     const data = {
         el: v,
         x: Math.random() * 800,
-        y: isEV ? 250 : Math.random() * 500, // រថយន្តសង្គ្រោះរត់គន្លងកណ្តាល
-        speed: isEV ? 7 : (1.2 + Math.random() * 2),
-        isEV: isEV
+        y: isPriority ? 250 : Math.random() * 400,
+        speed: isPriority ? 8 : (1.5 + Math.random() * 2),
+        isPriority: isPriority
     };
     
     map.appendChild(v);
     vehicles.push(data);
 }
 
-// 3. ប្រព័ន្ធដំណើរការចលនា (Main System Loop)
+// ៣. វដ្តដំណើរការព្រះនគរឌីជីថល (Main System Loop)
 function updateSystem() {
-    // ធ្វើបច្ចុប្បន្នភាពម៉ោងប្រព័ន្ធ (Unix Timestamp)
+    // បច្ចុប្បន្នភាពកាលប្បវត្តិ (Unix Clock)
     const clockEl = document.getElementById('unix-clock');
     if(clockEl) clockEl.innerText = Math.floor(Date.now() / 1000);
 
-    // គ្រប់គ្រងចលនារថយន្ត
+    // ត្រួតពិនិត្យចលនាយានយន្ត
     vehicles.forEach((v, index) => {
         v.x += v.speed;
         
-        // នៅពេលរថយន្តរត់ផុតអេក្រង់
         if(v.x > 900) {
-            if(v.isEV) {
+            if(v.isPriority) {
                 v.el.remove();
                 vehicles.splice(index, 1);
-                addLog("បេសកកម្មរថយន្តសង្គ្រោះ: បញ្ចប់", "var(--cyan)");
+                addLog("បេសកកម្មអាទិភាពខ្ពស់បំផុត: បញ្ចប់សព្វគ្រប់", "#00ffff");
                 return;
             }
-            v.x = -30; // ឱ្យរថយន្តធម្មតាត្រឡប់មកវិញ
+            v.x = -50; 
         }
         
         v.el.style.left = v.x + 'px';
@@ -67,64 +61,71 @@ function updateSystem() {
     requestAnimationFrame(updateSystem);
 }
 
-// 4. សកម្មភាពការពារ (Defense Actions)
+// ៤. ព្រះរាជកិច្ចការពារប្រព័ន្ធ (Defense & Utility Actions)
 function fireSolar() {
-    aiSpeak("ប្រព័ន្ធការពារសូឡាត្រូវបានដំណើរការ។ កំពុងកម្ទេចគោលដៅ។");
+    aiSpeak("សូរស័ក្តិសូឡាត្រូវបានប្រកាសអាសន្ន។ កំពុងបោសសម្អាតមហន្តរាយ។");
     map.classList.add('flicker');
-    addLog("ការការពារសូឡា: កំពុងប្រតិបត្តិការ", "var(--gold)");
+    addLog("ព្រះរាជបញ្ជាសូឡា: កំពុងប្រតិបត្តិការ", "#ffd700");
     
     setTimeout(() => {
         map.classList.remove('flicker');
-        aiSpeak("ការគំរាមកំហែងត្រូវបានកម្ចាត់។ ប្រព័ន្ធមានសុវត្ថិភាព។");
+        aiSpeak("មហន្តរាយត្រូវបានវិនាសសាបសូន្យ។ ព្រះនគរមានសុវត្ថិភាព។");
     }, 2000);
 }
 
 function spawnEV() {
-    aiSpeak("បញ្ជាអាទិភាពខ្ពស់។ រថយន្តសង្គ្រោះបន្ទាន់កំពុងចេញដំណើរ។");
+    aiSpeak("ព្រះរាជបញ្ជាអាទិភាពខ្ពស់បំផុត។ យានសង្គ្រោះកំពុងយាងចេញដំណើរ។");
     createVehicle(true);
-    addLog("ការបញ្ជាអាទិភាព: កំពុងដំណើរការ", "white");
+    addLog("ព្រះរាជបញ្ជាអាទិភាព: សកម្ម", "#ffffff");
 }
 
-// 5. ការក្លែងធ្វើការវាយប្រហារ (Threat Simulator)
+// ៥. បច្ចុប្បន្នភាពថាមពលសូឡា (Solar Grid Progression)
+function updateSolarLoad() {
+    const now = Date.now();
+    const tZero = new Date("January 19, 2038 03:14:07 UTC").getTime();
+    const targetDate = tZero - (90 * 24 * 60 * 60 * 1000); // ៣ ខែមុនកាលកំណត់
+    const startDate = new Date("January 1, 2026 00:00:00 UTC").getTime();
+    
+    if (now >= targetDate) {
+        if(solarLoadDisplay) solarLoadDisplay.innerText = "១០០%";
+        return;
+    }
+
+    const progress = (now - startDate) / (targetDate - startDate);
+    const currentLoad = 14 + (progress * (100 - 14));
+    
+    if(solarLoadDisplay) {
+        solarLoadDisplay.innerText = `${currentLoad.toFixed(2)}%`;
+    }
+}
+
+// ៦. ការក្លែងធ្វើមហន្តរាយ (Threat Simulator)
 function simulateIntrusion() {
     const ip = `${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.8.${Math.floor(Math.random()*255)}`;
     const attackerEl = document.getElementById('attacker-ip');
     if(attackerEl) attackerEl.innerText = ip;
     
-    const node = document.createElement('div');
-    node.className = 'threat-node';
-    node.style.left = Math.random() * 90 + '%';
-    node.style.top = Math.random() * 90 + '%';
-    map.appendChild(node);
-    
-    aiSpeak("ព្រមាន! រកឃើញការជ្រៀតជ្រែកប្រព័ន្ធពីអាសយដ្ឋាន " + ip);
-    addLog(`រកឃើញការវាយប្រហារ: ${ip}`, "var(--red)");
-    
-    // បំបាត់ចំណុចវាយប្រហារក្រោយ ៤ វិនាទី
-    setTimeout(() => {
-        if(node) node.remove();
-        aiSpeak("ការវាយប្រហារត្រូវបានទប់ស្កាត់ដោយជោគជ័យ។");
-    }, 4000);
+    aiSpeak(`សូមប្រយ័ត្ន! ពិនិត្យឃើញការរំលោភព្រះរាជអាជ្ញាប្រព័ន្ធពីអាសយដ្ឋាន ${ip}`);
+    addLog(`ពិនិត្យឃើញមហន្តរាយ: ${ip}`, "#ff3131");
 }
 
-// ជំនួយការបន្ថែម Log ទៅកាន់ Feed
+// បញ្ជីព្រឹត្តិការណ៍ (Imperial Log Helper)
 function addLog(text, color) {
     const entry = document.createElement('div');
     entry.style.color = color;
-    entry.innerText = `> ${text}`;
+    entry.style.fontWeight = "bold";
+    entry.innerText = `>>> ${text}`;
     logFeed.prepend(entry);
 }
 
-// --- ចាប់ផ្តើមដំណើរការប្រព័ន្ធ (Boot sequence) ---
+// --- ការចាប់ផ្តើមគ្រងរាជ្យនៃប្រព័ន្ធ (Imperial Boot sequence) ---
 window.onload = () => {
-    // បង្កើតរថយន្តធម្មតា 20 គ្រឿង
-    for(let i=0; i<20; i++) createVehicle(false);
+    for(let i=0; i<15; i++) createVehicle(false);
     
     updateSystem();
+    setInterval(updateSolarLoad, 1000);
+    setInterval(simulateIntrusion, 30000);
     
-    // បង្កើតការវាយប្រហារសាកល្បងរៀងរាល់ ២៥ វិនាទី
-    setInterval(simulateIntrusion, 25000);
-    
-    aiSpeak("ប្រព័ន្ធ Sentinel OS កំណែ ៧.០ ចាប់ផ្តើមដំណើរការ។ ស្ថានភាពប្រព័ន្ធ: ប្រក្រតី។");
-    addLog("ប្រព័ន្ធ: ចាប់ផ្តើមជោគជ័យ", "var(--cyan)");
+    aiSpeak("ប្រព័ន្ធសេនទីណែល កំណែ ៧.០ ចាប់ផ្តើមគ្រងរាជ្យ។ រាល់កិច្ចការទាំងឡាយមានភាពប្រក្រតី។");
+    addLog("ស្នូលប្រព័ន្ធ: ចាប់ផ្តើមមហិទ្ធិឫទ្ធិ", "#00ffff");
 };
