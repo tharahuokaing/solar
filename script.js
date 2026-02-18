@@ -76,7 +76,7 @@ function fireSolar() {
     
     setTimeout(() => {
         map.classList.remove('flicker');
-        aiSpeak("មហន្តរាយត្រូវបានវិនាសសាបសូន្យ។ ព្រះនគរមានសុវត្ថិភាព។");
+        aiSpeak("មហន្តរាយត្រូវបានវិនាសសាបសូន្យ។ ព្រះអធិរាជាណាចក្រមានសុវត្ថិភាព។");
     }, 2000);
 }
 
@@ -138,8 +138,8 @@ function addLog(text, color) {
 
 // --- ការចាប់ផ្តើមគ្រងរាជ្យនៃប្រព័ន្ធ (Imperial Boot sequence) ---
 window.onload = () => {
-    // បង្កើតយានយន្តធម្មតាចំនួន ៣០ គ្រឿង
-    for(let i=0; i<30; i++) {
+    // បង្កើតយានយន្តធម្មតាចំនួន ១០០ គ្រឿង
+    for(let i=0; i<១០០; i++) {
         setTimeout(() => createVehicle(false), i * 200);
     }
     
