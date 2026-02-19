@@ -137,8 +137,8 @@ function addLog(msg, color) {
 
 // 6. ចាប់ផ្តើមប្រព័ន្ធ (System Boot)
 window.onload = () => {
-    // បង្កើតយានយន្តដំបូង ២០ គ្រឿង
-    for (let i = 0; i < 20; i++) createVehicle();
+    // បង្កើតយានយន្តដំបូង ៣២ គ្រឿង
+    for (let i = 0; i < 32; i++) createVehicle();
     
     animate();
     
