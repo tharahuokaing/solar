@@ -11,13 +11,15 @@
 
     <header class="panel header-main">
         <div class="os-brand">
-            <div class="glitch-text">ព្រះនគរឌីជីថល // SENTINEL OS</div>
-            <div class="sub-label">IMPERIAL V2X & SOLAR GRID CONTROL</div>
+            <div class="glitch-text" onclick="window.location.href='https://tharahuokaing.github.io/solar-cyber-empire/'" style="cursor:pointer">
+                ព្រះនគរឌីជីថល // SOLAR_CYBER_EMPIRE
+            </div>
+            <div class="sub-label">SECURE_32BIT_EPOCH_INFRASTRUCTURE</div>
         </div>
         
         <div class="header-data-cluster">
             <div class="time-module">
-                <span class="label">32-BIT_UNIX_OVERFLOW:</span>
+                <span class="label">UNIX_BINARY_SYNC:</span>
                 <span id="unix-clock" class="val-mono">00000000000000000000000000000000</span>
             </div>
         </div>
@@ -26,40 +28,40 @@
     <div class="dashboard-grid">
         
         <aside class="sidebar-left">
-            <div class="panel stat-container">
-                <div class="panel-header">ស្ថានភាពថាមពលសូឡា (Solar Grid)</div>
-                <div class="stat-box">
-                    <span class="stat-label">GRID_LOAD_PROGRESSION</span>
-                    <div id="solar-load-val" class="val-mono">0.000000%</div>
+            <div class="panel nav-container">
+                <div class="panel-header">បណ្តាញបញ្ជាការ (Strategic Command)</div>
+                <div class="link-grid">
+                    <a href="https://tharahuokaing.github.io/ai/" class="nav-link" target="_blank">> បញ្ញាសិប្បនិម្មិត (AI_CORE)</a>
+                    <a href="https://tharahuokaing.github.io/space-force-cyber-dominion/" class="nav-link" target="_blank">> កងទ័ពអវកាស (SPACE_FORCE)</a>
+                    <a href="https://tharahuokaing.github.io/solar-system/" class="nav-link" target="_blank">> ប្រព័ន្ធសូឡា (SOLAR_V1)</a>
+                    <a href="https://tharahuokaing.github.io/solar-system1/" class="nav-link" target="_blank">> ផែនទីភព (SOLAR_V2)</a>
                 </div>
+            </div>
+
+            <div class="panel stat-container">
+                <div class="panel-header">ថាមពល និងសន្តិសុខ</div>
                 <div class="stat-box">
-                    <span class="stat-label">T-ZERO_ESTIMATE</span>
-                    <div class="val-alert">19 JAN 2038</div>
+                    <span class="stat-label">SOLAR_GRID_LOAD</span>
+                    <div id="solar-load-val" class="val-mono" style="color:var(--imperial-gold)">0.000000%</div>
                 </div>
             </div>
 
             <div class="panel surveillance">
-                <div class="panel-header">HELIOS_MONITOR_CAM_03</div>
                 <div class="cam-feed">
-                    <div class="scanline"></div>
                     <img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0171.jpg" alt="Sun Monitor" class="live-feed">
-                    <div class="ai-overlay">
-                        <p class="val-alert">[!] DETECTION_ACTIVE</p>
-                        <p>OBJ: SOLAR_FLARE_THREAT</p>
-                    </div>
+                    <div class="ai-overlay">HELIOS_MONITOR_CAM_03</div>
                 </div>
             </div>
 
-            <div class="control-group">
-                <button class="btn" onclick="fireSolar()">បញ្ជាបាញ់កាំរស្មីសូឡា (Execute Blast)</button>
-                <button class="btn" onclick="spawnEV()">បញ្ជូនយានអាទិភាព (Spawn V2X)</button>
-            </div>
+            <button class="btn btn-primary" onclick="fireSolar()">EXECUTE SOLAR BLAST</button>
+            <button class="btn" onclick="spawnEV()">SPAWN V2X UNIT</button>
         </aside>
 
         <main class="panel main-stage">
             <div id="map" class="hologram-viewport">
                 <div class="grid-overlay"></div>
-                </div>
+                <div class="scanline"></div>
+            </div>
         </main>
 
         <aside class="sidebar-right">
@@ -69,9 +71,9 @@
             </div>
 
             <div class="panel threat-monitor">
-                <div class="panel-header">ការជ្រៀតចូលប្រព័ន្ធ (Intrusion Detection)</div>
+                <div class="panel-header">ប្រព័ន្ធការពារ (Defense Shield)</div>
                 <div class="threat-data">
-                    <span class="label">ATTACKER_SOURCE_IP:</span>
+                    <span class="label">ATTACK_VECTOR_IP:</span>
                     <div id="attacker-ip" class="val-alert">0.0.0.0</div>
                 </div>
             </div>
@@ -81,9 +83,9 @@
     <footer class="panel footer-bar">
         <div class="diagnostics-module">
             <span class="status-active">●</span>
-            <span id="core-log">ស្នូលប្រព័ន្ធ: ដំណើរការធម្មតា (CORE_SENTINEL: ONLINE)</span>
+            <span id="core-log">SENTINEL_CORE: ONLINE_SYNC_WITH_EMPIRE_NODES</span>
         </div>
-        <div class="version-tag">VERSION 7.0.26_STABLE</div>
+        <div class="version-tag">SYSTEM_V7.0 // MAR_2026</div>
     </footer>
 
     <script src="script.js"></script>
