@@ -1,125 +1,13 @@
+/* --- Imperial Cyber Color Palette --- */
 :root {
-    --neon-green: #00ff41;
-    --dark-bg: #0a0a0a;
-    --panel-bg: rgba(0, 50, 0, 0.1);
-    --alert-red: #ff3131;
-    --font-main: 'Share Tech Mono', monospace;
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: var(--neon-green);
-    font-family: var(--font-main);
-    margin: 0;
-    overflow: hidden; /* Keeps it feeling like a single-screen OS */
-    text-transform: uppercase;
-}
-
-/* --- Layout Grid --- */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 300px 1fr 300px;
-    grid-template-rows: calc(100vh - 120px);
-    gap: 15px;
-    padding: 15px;
-}
-
-.panel {
-    border: 1px solid var(--neon-green);
-    background: var(--panel-bg);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-/* --- Header & Footer --- */
-header, footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 25px;
-    height: 40px;
-    border-bottom: 1px solid var(--neon-green);
-}
-
-/* --- Glitch Effect for Branding --- */
-.glitch-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 3px;
-    text-shadow: 2px 0 var(--alert-red);
-    animation: glitch 3s infinite;
-}
-
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-}
-
-/* --- CRT Scanline Animation --- */
-.scanline {
-    width: 100%;
-    height: 2px;
-    background: rgba(0, 255, 65, 0.2);
-    position: absolute;
-    top: 0;
-    z-index: 10;
-    animation: scan 4s linear infinite;
-}
-
-@keyframes scan {
-    from { top: 0; }
-    to { top: 100%; }
-}
-
-/* --- CCTV Module --- */
-.cam-feed {
-    position: relative;
-    border: 1px solid #333;
-}
-
-.live-feed {
-    width: 100%;
-    filter: sepia(100%) hue-rotate(90deg) brightness(80%) contrast(120%);
-}
-
-.ai-overlay {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 0.7rem;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 5px;
-}
-
-/* --- Buttons --- */
-.btn {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background: transparent;
-    border: 1px solid var(--neon-green);
-    color: var(--neon-green);
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: var(--neon-green);
-    color: black;
-}
-
-:root {
-    --imperial-gold: #d4af37;   /* ពណ៌មាសសន្លឹក */
-    --royal-gold: #ffdf00;      /* ពណ៌មាសភ្លឺចាំង */
-    --obsidian-black: #050505;  /* ពណ៌ខ្មៅរលើប */
-    --royal-red: #8b0000;       /* ពណ៌ក្រហមឈាមជ្រូកសម្រាប់អាសន្ន */
-    --glass-bg: rgba(20, 20, 20, 0.9);
+    --imperial-gold: #d4af37;   /* Primary Accent */
+    --royal-gold: #ffdf00;      /* Glow Accent */
+    --obsidian-black: #050505;  /* Deep Background */
+    --neon-cyan: #00f2ff;       /* Data streams */
+    --royal-red: #ff3131;       /* Alert States */
+    --glass-bg: rgba(10, 10, 10, 0.85);
     --font-royal: 'Kantumruy Pro', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
 }
 
 body {
@@ -127,130 +15,129 @@ body {
     color: var(--imperial-gold);
     font-family: var(--font-royal);
     margin: 0;
+    height: 100vh;
     overflow: hidden;
-    /* បន្ថែមរូបរាង Background បែបសរសៃមាសស្តើងៗ */
+    text-transform: uppercase;
     background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
     background-size: 30px 30px;
 }
 
-/* --- ស៊ុមបន្ទះបញ្ជាបែបបុរាណលាយទំនើប --- */
+/* --- Layout Grid Structure --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr 320px;
+    grid-template-rows: calc(100vh - 100px);
+    gap: 12px;
+    padding: 12px;
+}
+
+/* --- Panel Aesthetics --- */
 .panel {
-    border: 2px solid var(--imperial-gold);
+    border: 1px solid var(--imperial-gold);
     background: var(--glass-bg);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2), inset 0 0 10px rgba(212, 175, 55, 0.1);
-    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
     position: relative;
+    backdrop-filter: blur(10px);
 }
 
-/* --- ចំណងជើងព្រះនគរ (Branding) --- */
-.glitch-text {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--royal-gold);
-    text-shadow: 0 0 15px rgba(255, 223, 0, 0.6);
-    letter-spacing: 5px;
+.panel-header {
+    background: rgba(212, 175, 55, 0.1);
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--imperial-gold);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    letter-spacing: 2px;
 }
 
-/* --- ប៊ូតុងបញ្ជាព្រះរាជបញ្ជា --- */
+/* --- Interactive Elements --- */
 .btn {
-    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    width: 100%;
+    background: transparent;
     border: 1px solid var(--imperial-gold);
     color: var(--imperial-gold);
     padding: 12px;
+    font-family: var(--font-mono);
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.4s ease;
-    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 10px;
 }
 
 .btn:hover {
     background: var(--imperial-gold);
     color: var(--obsidian-black);
-    box-shadow: 0 0 25px var(--imperial-gold);
+    box-shadow: 0 0 30px var(--imperial-gold);
 }
 
-/* --- ក្រាហ្វិកបញ្ជា (Map Viewport) --- */
+/* --- 3D Hologram Stage --- */
 .main-stage {
-    border: 3px double var(--imperial-gold);
-    background: radial-gradient(circle, #111, #050505);
+    perspective: 1000px;
+    border: 2px solid var(--imperial-gold);
 }
 
-/* --- ចលនាស្កេនបែបមាស (Gold Scanline) --- */
+.hologram-viewport {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #1a1a00 0%, #050505 100%);
+    transform-style: preserve-3d;
+}
+
+/* --- Scanline & Glitch Effects --- */
 .scanline {
     width: 100%;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(to right, transparent, var(--royal-gold), transparent);
-    opacity: 0.3;
+    opacity: 0.2;
     position: absolute;
-    animation: royalScan 5s linear infinite;
+    pointer-events: none;
+    z-index: 100;
+    animation: royalScan 6s linear infinite;
 }
 
 @keyframes royalScan {
-    0% { top: 0; }
-    100% { top: 100%; }
+    from { top: 0; }
+    to { top: 100%; }
 }
 
-/* --- ស្ថានភាពអាសន្ន (Alert States) --- */
+.glitch-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--royal-gold);
+    text-shadow: 2px 0 var(--neon-cyan), -2px 0 var(--royal-red);
+    letter-spacing: 4px;
+    font-family: var(--font-mono);
+}
+
+/* --- Data & Status Modules --- */
 .val-alert {
-    color: #ff4500;
-    font-weight: bold;
-    text-shadow: 0 0 10px #ff4500;
+    color: var(--royal-red);
+    text-shadow: 0 0 10px var(--royal-red);
 }
 
-.status-active {
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00;
-    animation: blink 2s infinite;
+.val-mono {
+    font-family: var(--font-mono);
+    color: var(--neon-cyan);
 }
 
-@keyframes blink {
-    50% { opacity: 0.5; }
-}
-
-/* ការរចនាផែនទីហូឡូក្រាមមហិទ្ធិឫទ្ធិ */
-.hologram-viewport {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, #1a1a00 0%, #050505 80%);
+/* --- CCTV Visuals --- */
+.cam-feed {
+    border: 1px solid rgba(212, 175, 55, 0.3);
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 }
 
-#map-canvas {
+.live-feed {
     width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 0 10px var(--imperial-gold));
-    opacity: 0.8;
+    filter: sepia(100%) hue-rotate(50deg) brightness(90%) contrast(110%);
 }
 
-/* ឥទ្ធិពលខ្សែស្កេនរាជវាំងឌីជីថល */
+/* --- Grid & Markers --- */
 .grid-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
     pointer-events: none;
-}
-
-/* ចំណុចមហន្តរាយ ២០៣៨ (Danger Nodes) */
-.threat-node {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: var(--royal-red);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--royal-red);
-    animation: pulse-red 1.5s infinite;
-}
-
-@keyframes pulse-red {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(3); opacity: 0; }
 }
