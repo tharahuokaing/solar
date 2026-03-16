@@ -3,31 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYBER SENTINEL | OS v3.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>SOLAR CYBER EMPIRE | CC-v7.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Kantumruy+Pro:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Core Empire Styling */
+        :root {
+            --neon-blue: #00f2ff;
+            --alert-red: #ff3e3e;
+            --panel-bg: rgba(10, 15, 20, 0.9);
+            --border-glow: 0 0 10px rgba(0, 242, 255, 0.3);
+        }
+
+        body {
+            background: #050505;
+            color: var(--neon-blue);
+            font-family: 'Share Tech Mono', monospace;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .header-main {
+            border-bottom: 2px solid var(--neon-blue);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            background: var(--panel-bg);
+            box-shadow: var(--border-glow);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr 320px;
+            gap: 10px;
+            padding: 10px;
+            flex-grow: 1;
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            padding: 15px;
+            position: relative;
+        }
+
+        .cam-feed {
+            border: 1px solid var(--alert-red);
+            position: relative;
+            background: #000;
+        }
+
+        .live-feed {
+            width: 100%;
+            opacity: 0.8;
+            filter: hue-rotate(180deg) brightness(1.2);
+        }
+
+        .val-alert { color: var(--alert-red); text-shadow: 0 0 5px var(--alert-red); }
+        
+        .btn {
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: var(--neon-blue); color: #000; }
+
+        .log-stream {
+            font-size: 0.8rem;
+            height: 200px;
+            overflow-y: auto;
+            color: #55acee;
+        }
+    </style>
 </head>
 <body class="terminal-theme">
 
     <header class="panel header-main">
         <div class="os-brand">
-            <span class="glitch-text" data-text="SENTINEL OS v7.0">SENTINEL OS v7.0</span>
+            <span class="glitch-text">SOLAR_CYBER_EMPIRE // V7.0</span>
         </div>
-        
         <div class="header-data-cluster">
             <div class="time-module">
-                <span class="label">UNIX_EPOCH:</span>
-                <span id="unix-clock" class="val-mono">00000000000000000000000000000001</span>
-            </div>
-            <div class="security-status">
-                <span class="label">SEC_STATUS:</span> 
-                <span id="sys-status" class="status-active">SECURE</span>
+                <span class="label">UNIX_EPOCH_INT:</span>
+                <span id="unix-clock" class="val-mono">FETCHING...</span>
             </div>
         </div>
     </header>
 
     <div class="dashboard-grid">
-        
         <aside class="panel sidebar-left">
             <div class="stat-group">
                 <div class="stat-box">
@@ -35,61 +106,36 @@
                     <div class="val">4.2 <span class="unit">GB/s</span></div>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-label">V2X_NODES_SYNC</span>
-                    <div id="node-count" class="val">10</div>
-                </div>
-                    <div class="stat-box">
                     <div class="stat-label">SOLAR_GRID_LOAD</div>
-                    <div id="solar-load-val" class="val">14%</div>
-                </div>            
-                <div class="stat-box">
-                <div class="stat-label">SOLAR_GRID_LOAD</div>
-                    <div id="solar-load-val" class="val">CALCULATING...</div>
+                    <div id="solar-load-val" class="val-alert">CALCULATING...</div>
+                </div>
             </div>
-            
+
             <section class="module-container surveillance">
-                <div class="panel-header">SURVEILLANCE_GRID</div>
+                <div class="panel-header">HELIOS_MONITOR_CAM_03</div>
                 <div class="cam-wrapper">
-                    <div class="cam-label">CAM_03: HELIOS_MONITOR</div>
                     <div class="cam-feed">
-                        <img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0171.jpg" 
-                             alt="Live Sun Monitor" class="live-feed">
-                        
-                        <div class="overlay-data">
-                            <p class="warning-text">[!] SIMULATING 32-BIT OVERFLOW</p>
-                            <p>EPOCH_MAX: 19 JAN 2038</p>
-                            <p>OVERFLOW_EST: 03:14:07 GMT</p>
+                        <img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0171.jpg" alt="Sun Monitor" class="live-feed">
+                        <div class="overlay-data" style="position:absolute; bottom:5px; left:5px; font-size:10px;">
+                            <p class="val-alert">[!] 32-BIT OVERFLOW SIMULATION</p>
+                            <p>MAX_DATE: 19 JAN 2038</p>
                         </div>
                     </div>
                 </div>
             </section>
-    
-            <div class="action-grid">
-                <button class="btn btn-solar" onclick="fireSolar()">
-                    <span class="icon">⚡</span> EXECUTE SOLAR BLAST
-                </button>
-                <button class="btn btn-priority" onclick="spawnEV()">
-                    <span class="icon">🚑</span> PRIORITY OVERRIDE
-                </button>
-            </div>
+
+            <button class="btn" onclick="fireSolarBlast()">EXECUTE SOLAR BLAST</button>
         </aside>
 
-        <main class="panel main-stage">
-            <div class="hologram-viewport" id="map">
-                <div class="scanline"></div>
-                <div class="grid-overlay"></div>
-                </div>
-        </main>
+        <main class="panel main-stage" id="map">
+            <div class="scanline"></div>
+            </main>
 
         <aside class="panel sidebar-right">
-            <div class="panel-header">CTI_THREAT_FEED</div>
-            <div id="log-feed" class="log-stream">
-                <div class="log-entry">[SYS] Handshake initialized...</div>
-                <div class="log-entry">[NET] Satellite link established...</div>
-            </div>
-            
+            <div class="panel-header">THREAT_FEED_LIVE</div>
+            <div id="log-feed" class="log-stream"></div>
             <div class="threat-monitor">
-                <div class="monitor-label">LAST_KNOWN_ATTACKER_IP</div>
+                <div class="monitor-label">ATTACKER_IP</div>
                 <div id="attacker-ip" class="val-alert">0.0.0.0</div>
             </div>
         </aside>
@@ -97,22 +143,10 @@
 
     <footer class="panel footer-bar">
         <div class="diagnostics-module">
-            <span class="diag-header">[ CORE_SYSTEM_DIAGNOSTICS ]</span>
-            <span id="core-log" class="typing-text">Initializing AI Sentinel Core... Linking to Satellite Constellation...</span>
-        </div>
-        
-        <div class="geo-data">
-            <div class="node-id">NODE: <span class="val-mono">EARTH_PRIME</span></div>
-            <div class="coords">GPS: <span class="val-mono">00.0000° N, 000.0000° E</span></div>
+            <span id="core-log">SYSTEM: INITIALIZING SATELLITE LINK...</span>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="script1.js"></script>
-    <script src="script2.js"></script>
-    <script src="script3.js"></script>
-    <script src="script4.js"></script>
     <script src="solar-logic.js"></script>
-    <script src="ultra_secure_mode.js"></script>    
 </body>
 </html>
